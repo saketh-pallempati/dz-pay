@@ -4,7 +4,7 @@ import TransactionItem from './TransactionItem'
 import MoneyDetails from './MoneyDetails'
 import './MoneyManager.css'
 import { backend } from "../declarations/backend";
-
+import ShopItem from './ShopItem';
 export default function MoneyManager() {
   // const navigate = useNavigate();
   const { state } = useLocation();
@@ -13,6 +13,8 @@ export default function MoneyManager() {
   const [expenses, setExpenses] = useState(0);
   const [income, setIncome] = useState(0);
   const [transactionsList, setTransactionsList] = useState([]);
+  const [shops, setShops] = useState([]);
+
   useEffect(() => {
     async function fetchTransactions() {
       const ls = await backend.getTransactionHistoryOfUser(username);
@@ -35,6 +37,13 @@ export default function MoneyManager() {
     }
     fetchTransactions();
   }, [username]);
+  useEffect(() => {
+    async function fetchShops() {
+      const shops = await backend.listShops();
+      setShops(shops);
+    }
+    fetchShops();
+  }, [])
   async function addTransaction(e) {
     e.preventDefault();
     const form = e.target;
@@ -77,7 +86,7 @@ export default function MoneyManager() {
             Welcome back to your
             <span className="money-manager-text"> Dz Pay</span>
           </p>
-</div>
+        </div>
         <MoneyDetails
           balanceAmount={balance}
           incomeAmount={income}
@@ -128,8 +137,8 @@ export default function MoneyManager() {
                 <li className="table-header">
                   <p className="table-header-cell">Sender</p>
                   <p className="table-header-cell">Receiver</p>
+                  <p className="table-header-cell">Time</p>
                   <p className="table-header-cell">Amount</p>
-                  <p className="table-header-cell">Date</p>
                 </li>
                 {transactionsList.map(eachTransaction => {
                   let milliseconds = Number(eachTransaction.time.toString()) / 1000000;
@@ -148,10 +157,19 @@ export default function MoneyManager() {
                       time={dateTimeString}
                     />
                   );
+
                 })}
               </ul>
             </div>
           </div>
+        </div>
+        <div className='add-shop'>
+          <h3>Shop List ( <i>Earnings</i> )</h3>
+          <hr />
+
+          <ul>
+            {shops.map((shop, index) => <ShopItem key={index} shop={shop} />)}
+          </ul>
         </div>
       </div>
     </div>

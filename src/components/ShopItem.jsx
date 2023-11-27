@@ -37,7 +37,7 @@ const ShopItem = (props) => {
 
   return (
     <li style={styles.listItem}>
-      <div style={styles.name} >{props.shop}</div>
+      <div style={styles.name} >{props.shop}</div> 
       <div style={styles.cost}>₹{cost}</div>
     </li>
   );

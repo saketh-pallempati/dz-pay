@@ -1,7 +1,7 @@
 import { backend } from "../declarations/backend";
 import { useNavigate } from "react-router-dom";
 import './LoginPage.css';
-// import logo from '../assets/logo.png';
+import logo from '../assets/logo.png';
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,12 +55,14 @@ const LoginPage = () => {
     return (
         <div className="login-container">
             <div className="logo-column">
-                {/* <img src={logo} alt="Your Logo" /> */}
-                <h1>Expensory</h1>
+                <img src={logo} alt="Your Logo" />
+                <h1>DZ Pay</h1>
                 <h3 className="web-txt-auth">
-                    A simple, web-based application for tracking expenses, built on the
+                    A simple, web-based application for maintain an entire Fest on the college, built on the
                     ICP blockchain.
                 </h3>
+                <p>Admin also can log in here</p>
+
             </div>
             <div className="form-column">
                 {isLoggingIn ? <h1>Login</h1> : <h1>Sign Up</h1>}
