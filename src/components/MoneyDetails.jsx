@@ -12,7 +12,7 @@ const MoneyDetails = ({ balanceAmount, incomeAmount, expensesAmount }) => {
         />
         <div>
           <p className="details-text">Your Balance</p>
-          <p className="details-money">Rs {balanceAmount}</p>
+          <p className="details-money">Rs {balanceAmount == -1?0:balanceAmount}</p>
         </div>
       </div>
       <div className="income-container">

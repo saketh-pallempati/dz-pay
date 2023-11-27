@@ -22,14 +22,12 @@ export default function MoneyManager() {
             let incomeTemp = 0;
             let expensesTemp = 0;
             ls.forEach(eachTransaction => {
-                console.log(eachTransaction.from);
                 if (eachTransaction.from === username) {
                     expensesTemp += eachTransaction.amount;
                 } else {
                     incomeTemp += eachTransaction.amount;
                 }
             })
-            console.log(expensesTemp);
             setTransactionsList(ls);
             setBalance(balance);
             setExpenses(expensesTemp);
@@ -79,7 +77,6 @@ export default function MoneyManager() {
         let incomeTemp = 0;
         let expensesTemp = 0;
         res.forEach(eachTransaction => {
-            console.log(eachTransaction);
             if (eachTransaction.from === username) {
                 expensesTemp += eachTransaction.amount;
             } else {
