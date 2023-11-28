@@ -76,7 +76,7 @@ actor {
 
   public func addShop(shopName : Text) : async Bool {
     shops.add(shopName);
-    await registerUser(shopName, "admin");
+    await registerUser(shopName, shopName);
   };
 
   public query func listShops() : async [Text] {
